@@ -6,6 +6,7 @@ import {ApiResponse} from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
 
 
+
 const generateAccessAndRefreshTokens = async(userId) => {
     try{
         const user = await User.findById(userId);
@@ -274,6 +275,16 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
     const avatarLocalPath = req.file?.path
     if(!avatarLocalPath){
         throw new ApiError(400, "Avatar is required")
+    }
+    
+    // delete old image from cloudinary
+    // const user = await User.findById(req.user?._id)
+    const user1 = await User.findById(req.user?._id)
+    if(user1.avatar){
+        const public_id = user1.avatar.split("/").pop().split(".")[0];
+        await uploadOnCloudinary.destroy(public_id);
+        console.log("Error deleting old avatar from Cloudinary", error);
+        throw new ApiError(500, "Error deleting old avatar from Cloudinary")
     }
 
 
