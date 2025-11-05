@@ -1,13 +1,23 @@
 // require('dotenv').config()
 import dotenv from "dotenv"
+
+// IMPORTANT: Load environment variables FIRST before any other imports
+dotenv.config({
+    path : './.env'
+})
+
+// Verify environment variables are loaded
+console.log("Environment variables loaded:", {
+    PORT: process.env.PORT,
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY ? '***set***' : 'NOT SET',
+    CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET ? '***set***' : 'NOT SET'
+});
+
 // import mongoose from "mongoose";
 // import { DB_NAME } from "./constants";
 import connectDB from "./db/index.js"
 import app from "./app.js"
-
-dotenv.config({
-    path : './.env'
-})
 
 connectDB()
 .then(() => {
