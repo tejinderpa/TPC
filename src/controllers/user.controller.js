@@ -287,6 +287,8 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
         throw new ApiError(500, "Error deleting old avatar from Cloudinary")
     }
 
+    
+
 
     const avatar = await uploadOnCloudinary(avatarLocalPath)
     if(!avatar.url){
