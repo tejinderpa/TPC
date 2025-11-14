@@ -3,12 +3,10 @@ import {
     requestMentorship,
     respondToMentorshipRequest,
     getMentorshipById,
-    getStudentMentorships,
-    getAlumniMentorships,
-    addMentorshipSession,
-    updateMentorshipGoal,
+    getMyMentorships,
+    addSession,
     completeMentorship,
-    deleteMentorship
+    cancelMentorship
 } from "../controllers/mentorship.controller.js";
 import {verifyJWT} from "../middlewares/auth.middleware.js";
 
@@ -19,19 +17,15 @@ router.use(verifyJWT);
 
 // Student routes
 router.route("/request").post(requestMentorship);
-router.route("/my-mentorships").get(getStudentMentorships);
+router.route("/my-mentorships").get(getMyMentorships);
 
 // Alumni routes
 router.route("/respond/:mentorshipId").patch(respondToMentorshipRequest);
-router.route("/my-mentees").get(getAlumniMentorships);
-router.route("/add-session/:mentorshipId").post(addMentorshipSession);
+router.route("/add-session/:mentorshipId").post(addSession);
 
 // Shared routes
 router.route("/:mentorshipId").get(getMentorshipById);
-router.route("/update-goal/:mentorshipId").patch(updateMentorshipGoal);
 router.route("/complete/:mentorshipId").patch(completeMentorship);
-
-// Admin routes
-router.route("/delete/:mentorshipId").delete(deleteMentorship);
+router.route("/cancel/:mentorshipId").patch(cancelMentorship);
 
 export default router;

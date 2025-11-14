@@ -3,11 +3,10 @@ import {
     createJob,
     getJobById,
     getAllJobs,
-    getCompanyJobs,
+    getEligibleJobs,
     updateJob,
     publishJob,
     closeJob,
-    getEligibleStudents,
     getJobStatistics,
     deleteJob
 } from "../controllers/job.controller.js";
@@ -20,15 +19,14 @@ router.use(verifyJWT);
 
 // Company routes
 router.route("/create").post(createJob);
-router.route("/my-jobs").get(getCompanyJobs);
 router.route("/update/:jobId").patch(updateJob);
 router.route("/publish/:jobId").patch(publishJob);
 router.route("/close/:jobId").patch(closeJob);
 
 // General routes
 router.route("/all").get(getAllJobs);
+router.route("/eligible").get(getEligibleJobs);
 router.route("/:jobId").get(getJobById);
-router.route("/eligible-students/:jobId").get(getEligibleStudents);
 router.route("/statistics/:jobId").get(getJobStatistics);
 
 // Admin routes

@@ -11,9 +11,7 @@ import {
     getCompanyById,
     getAllCompanies,
     verifyCompany,
-    updateCompanyStatus,
-    deactivateCompany,
-    deleteCompany
+    deactivateCompany
 } from "../controllers/company.controller.js";
 import {upload} from "../middlewares/multer.middleware.js";
 import {verifyJWT} from "../middlewares/auth.middleware.js";
@@ -41,8 +39,6 @@ router.route("/:companyId").get(verifyJWT, getCompanyById);
 
 // TPO/Admin routes
 router.route("/verify/:companyId").patch(verifyJWT, verifyCompany);
-router.route("/status/:companyId").patch(verifyJWT, updateCompanyStatus);
 router.route("/deactivate/:companyId").patch(verifyJWT, deactivateCompany);
-router.route("/delete/:companyId").delete(verifyJWT, deleteCompany);
 
 export default router;

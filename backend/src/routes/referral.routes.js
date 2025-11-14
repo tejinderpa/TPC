@@ -3,10 +3,9 @@ import {
     createReferral,
     getReferralById,
     getAllReferrals,
-    getAlumniReferrals,
-    getStudentReferrals,
+    getMyReferrals,
     updateReferralStatus,
-    addReferralNote,
+    addReferralUpdate,
     deleteReferral
 } from "../controllers/referral.controller.js";
 import {verifyJWT} from "../middlewares/auth.middleware.js";
@@ -18,11 +17,8 @@ router.use(verifyJWT);
 
 // Alumni routes
 router.route("/create").post(createReferral);
-router.route("/my-referrals").get(getAlumniReferrals);
-router.route("/add-note/:referralId").post(addReferralNote);
-
-// Student routes
-router.route("/student-referrals").get(getStudentReferrals);
+router.route("/my-referrals").get(getMyReferrals);
+router.route("/add-update/:referralId").post(addReferralUpdate);
 
 // General routes
 router.route("/all").get(getAllReferrals);

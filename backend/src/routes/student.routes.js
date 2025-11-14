@@ -10,9 +10,7 @@ import {
     changePassword,
     getStudentById,
     getAllStudents,
-    markStudentPlaced,
-    updatePlacementDetails,
-    deactivateStudent,
+    markStudentAsPlaced,
     deleteStudent
 } from "../controllers/student.controller.js";
 import {upload} from "../middlewares/multer.middleware.js";
@@ -41,9 +39,7 @@ router.route("/avatar").patch(verifyJWT, upload.single("avatar"), updateStudentA
 // Admin/TPO routes
 router.route("/all").get(verifyJWT, getAllStudents);
 router.route("/:studentId").get(verifyJWT, getStudentById);
-router.route("/mark-placed/:studentId").patch(verifyJWT, markStudentPlaced);
-router.route("/placement-details/:studentId").patch(verifyJWT, updatePlacementDetails);
-router.route("/deactivate/:studentId").patch(verifyJWT, deactivateStudent);
+router.route("/mark-placed/:studentId").patch(verifyJWT, markStudentAsPlaced);
 router.route("/delete/:studentId").delete(verifyJWT, deleteStudent);
 
 export default router;

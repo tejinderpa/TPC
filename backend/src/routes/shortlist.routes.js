@@ -3,11 +3,9 @@ import {
     createShortlist,
     getShortlistById,
     getAllShortlists,
-    getJobShortlists,
     updateShortlistStatus,
     scheduleInterview,
-    submitFeedback,
-    bulkShortlist,
+    addFeedback,
     deleteShortlist
 } from "../controllers/shortlist.controller.js";
 import {verifyJWT} from "../middlewares/auth.middleware.js";
@@ -19,15 +17,13 @@ router.use(verifyJWT);
 
 // Company/TPO routes
 router.route("/create").post(createShortlist);
-router.route("/bulk-create").post(bulkShortlist);
 router.route("/status/:shortlistId").patch(updateShortlistStatus);
 router.route("/schedule-interview/:shortlistId").patch(scheduleInterview);
-router.route("/feedback/:shortlistId").post(submitFeedback);
+router.route("/feedback/:shortlistId").post(addFeedback);
 
 // General routes
 router.route("/all").get(getAllShortlists);
 router.route("/:shortlistId").get(getShortlistById);
-router.route("/job/:jobId").get(getJobShortlists);
 
 // Admin routes
 router.route("/delete/:shortlistId").delete(deleteShortlist);

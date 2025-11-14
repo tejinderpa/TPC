@@ -15,7 +15,6 @@ app.use(express.static("public"))
 app.use(cookieParser())
 
 //routes import
-import userRouter from "./routes/user.routes.js"
 import studentRouter from "./routes/student.routes.js"
 import applicationRouter from "./routes/application.routes.js"
 import eventRouter from "./routes/event.routes.js"
@@ -32,7 +31,6 @@ import analyticsRouter from "./routes/analytics.routes.js"
 import eventManagementRouter from "./routes/eventManagement.routes.js"
 
 //routes declaration
-app.use("/api/v1/users", userRouter)
 app.use("/api/v1/students", studentRouter)
 app.use("/api/v1/applications", applicationRouter)
 app.use("/api/v1/events", eventRouter)

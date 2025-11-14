@@ -3,7 +3,6 @@ import {
     createDrive,
     getDriveById,
     getAllDrives,
-    getCompanyDrives,
     updateDrive,
     updateDriveStatus,
     getDriveStatistics,
@@ -20,9 +19,6 @@ router.use(verifyJWT);
 router.route("/create").post(createDrive);
 router.route("/update/:driveId").patch(updateDrive);
 router.route("/status/:driveId").patch(updateDriveStatus);
-
-// Company specific routes
-router.route("/my-drives").get(getCompanyDrives);
 
 // General routes
 router.route("/all").get(getAllDrives);

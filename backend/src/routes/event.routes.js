@@ -1,13 +1,13 @@
 import {Router} from "express";
 import {
     registerForEvent,
-    getStudentEvents,
-    updateAttendance,
-    uploadCertificate,
-    submitFeedback,
+    getMyEvents,
+    updateAttendanceStatus,
+    uploadEventCertificate,
+    submitEventFeedback,
     getEventById,
     getAllEvents,
-    deleteEventParticipation
+    deleteEvent
 } from "../controllers/event.controller.js";
 import {upload} from "../middlewares/multer.middleware.js";
 import {verifyJWT} from "../middlewares/auth.middleware.js";
@@ -19,19 +19,19 @@ router.use(verifyJWT);
 
 // Student routes
 router.route("/register").post(registerForEvent);
-router.route("/my-events").get(getStudentEvents);
-router.route("/feedback/:eventId").post(submitFeedback);
+router.route("/my-events").get(getMyEvents);
+router.route("/feedback/:eventId").post(submitEventFeedback);
 
 // General routes
 router.route("/all").get(getAllEvents);
 router.route("/:eventId").get(getEventById);
 
 // TPO/Admin routes
-router.route("/attendance/:eventId").patch(updateAttendance);
+router.route("/attendance/:eventId").patch(updateAttendanceStatus);
 router.route("/certificate/:eventId").patch(
     upload.single("certificate"),
-    uploadCertificate
+    uploadEventCertificate
 );
-router.route("/delete/:eventId").delete(deleteEventParticipation);
+router.route("/delete/:eventId").delete(deleteEvent);
 
 export default router;

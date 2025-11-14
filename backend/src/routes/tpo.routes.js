@@ -3,7 +3,6 @@ import {
     registerTPO,
     loginTPO,
     logoutTPO,
-    refreshAccessToken,
     getCurrentTPO,
     updateTPODetails,
     updateTPOAvatar,
@@ -30,7 +29,6 @@ router.route("/login").post(loginTPO);
 
 // Secured routes
 router.route("/logout").post(verifyJWT, logoutTPO);
-router.route("/refresh-token").post(refreshAccessToken);
 router.route("/change-password").post(verifyJWT, changePassword);
 router.route("/current-tpo").get(verifyJWT, getCurrentTPO);
 router.route("/update-details").patch(verifyJWT, updateTPODetails);

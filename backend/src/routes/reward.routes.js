@@ -1,8 +1,8 @@
 import {Router} from "express";
 import {
     createReward,
-    getStudentRewards,
-    getLeaderboard,
+    getMyRewards,
+    getRewardLeaderboard,
     getRewardById,
     getAllRewards,
     getRewardStatistics,
@@ -16,8 +16,8 @@ const router = Router();
 router.use(verifyJWT);
 
 // Student routes
-router.route("/my-rewards").get(getStudentRewards);
-router.route("/leaderboard").get(getLeaderboard);
+router.route("/my-rewards").get(getMyRewards);
+router.route("/leaderboard").get(getRewardLeaderboard);
 router.route("/statistics").get(getRewardStatistics);
 
 // General routes
